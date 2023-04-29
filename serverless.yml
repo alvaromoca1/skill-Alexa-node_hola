@@ -33,7 +33,7 @@ functions:
     name: ${self:custom.lamdbaAlexa}
     description: this function is for hello test
     events:
-      - AlexaSkill: ${self:custom.alexaSkill}
+      - alexaSkill: ${self:custom.alexaSkill}
 
 plugins:
   - serverless-esbuild
