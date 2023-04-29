@@ -1,3 +1,6 @@
+//import  {HttpResponse} from '../helpers/response';
+//import { getHelloWord as getHelloController} from '@application/controllers/helloController';
+
 import {
   ErrorHandler,
   HandlerInput,
@@ -9,7 +12,7 @@ import {
   SessionEndedRequest,
 } from 'ask-sdk-model';
 
-export const LaunchRequestHandler : RequestHandler = {
+ export const getHello = {
   canHandle(handlerInput : HandlerInput) : boolean {
     const request = handlerInput.requestEnvelope.request;
     return request.type === 'LaunchRequest';        
@@ -23,8 +26,6 @@ export const LaunchRequestHandler : RequestHandler = {
       .withSimpleCard('hola elizabeth, alvaro te ama mucho y dice que res una presiosura de mujer!', speechText)
       .getResponse();
   },
+  //const { data } = await getHelloController(event);
+  //return HttpResponse._200(data);
 };
-
-
-
-
