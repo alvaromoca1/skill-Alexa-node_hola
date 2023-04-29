@@ -14,7 +14,7 @@ import {
 
 let skill;
 export const getHello = async (event,context) => {
-  console.log("EVENT->",event)
+  console.log("EVENT->",JSON.stringify(event))
   if (!skill) {
     skill = SkillBuilders.custom()
       .addRequestHandlers(
@@ -25,7 +25,7 @@ export const getHello = async (event,context) => {
   }
 
   const response = await skill.invoke(event, context);
-  console.log("response->",response)
+  console.log("response->",JSON.stringify(response))
   return response;
   //const { data } = await getHelloController(event);
   //return HttpResponse._200(data);
