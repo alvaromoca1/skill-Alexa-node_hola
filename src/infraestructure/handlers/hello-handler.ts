@@ -12,7 +12,25 @@ import {
   SessionEndedRequest,
 } from 'ask-sdk-model';
 
- export const getHello = {
+let skill;
+export const getHello = async (event,context) => {
+  if (!skill) {
+    skill = SkillBuilders.custom()
+      .addRequestHandlers(
+        helloMessage
+      )
+      .addErrorHandlers(ErrorHandler)
+      .create();
+  }
+
+  const response = await skill.invoke(event, context);
+
+  return response;
+  //const { data } = await getHelloController(event);
+  //return HttpResponse._200(data);
+};
+
+const helloMessage = {
   canHandle(handlerInput : HandlerInput) : boolean {
     const request = handlerInput.requestEnvelope.request;
     return request.type === 'LaunchRequest';        
@@ -26,6 +44,16 @@ import {
       .withSimpleCard('hola elizabeth, alvaro te ama mucho y dice que res una presiosura de mujer!', speechText)
       .getResponse();
   },
-  //const { data } = await getHelloController(event);
-  //return HttpResponse._200(data);
+}
+const ErrorHandler = {
+  canHandle() {
+    return true;
+  },
+  handle(handlerInput, error) {
+    console.log(`Error handled: ${error.message}`);
+    console.log(`Error stack: ${error.stack}`);
+    return handlerInput.responseBuilder
+      .speak('Sorry, an error occured')
+      .getResponse();
+  },
 };
