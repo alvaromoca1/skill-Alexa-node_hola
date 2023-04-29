@@ -36,12 +36,12 @@ const helloMessage = {
     return request.type === 'LaunchRequest';        
   },
   handle(handlerInput : HandlerInput) : Response {
-    const speechText = 'hola elizabeth, alvaro te ama mucho y dice que res una hermosura de mujer';
+    const speechText = 'Hola soy alexa dime algo cool!';
 
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(speechText)
-      .withSimpleCard('hola elizabeth, alvaro te ama mucho y dice que res una presiosura de mujer!', speechText)
+      .withSimpleCard('dije algo cool', speechText)
       .getResponse();
   },
 }
