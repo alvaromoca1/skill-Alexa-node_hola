@@ -1,4 +1,4 @@
-service: example-amcServerless
+service: skill-alexa
 
 package:
   individually: true
