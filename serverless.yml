@@ -10,7 +10,8 @@ package:
 frameworkVersion: '3'
 
 custom:
-  lamdbaHelloWord: lmb-${self:provider.stage}-${self:service}-helloword-01
+  lamdbaAlexa: lmb-${self:provider.stage}-${self:service}-helloword-01
+  alexaSkill: amzn1.ask.skill.de0d6d2b-f5ec-482e-8216-2acbe008a41a
   esbuild:
     bundle: true
     minify: true
@@ -29,12 +30,10 @@ provider:
 functions:
   helloWord:
     handler: src/infraestructure/handlers/hello-handler.getHello
-    name: ${self:custom.lamdbaHelloWord}
+    name: ${self:custom.lamdbaAlexa}
     description: this function is for hello test
     events:
-      - http:
-          path: /helloword       # https://dominio.fulanito/{stage}/empleados
-          method: get
+      - AlexaSkill: ${self:custom.alexaSkill}
 
 plugins:
   - serverless-esbuild
